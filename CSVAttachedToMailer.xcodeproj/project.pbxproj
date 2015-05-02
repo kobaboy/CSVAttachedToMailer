@@ -14,6 +14,7 @@
 		1887927B1AF280C000DB0B49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188792791AF280C000DB0B49 /* LaunchScreen.xib */; };
 		188792871AF280C100DB0B49 /* CSVAttachedToMailerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188792861AF280C100DB0B49 /* CSVAttachedToMailerTests.swift */; };
 		188792911AF3682F00DB0B49 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188792901AF3682F00DB0B49 /* MessageUI.framework */; };
+		188792931AF4AEE200DB0B49 /* myphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 188792921AF4AEE200DB0B49 /* myphoto.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		188792851AF280C100DB0B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188792861AF280C100DB0B49 /* CSVAttachedToMailerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVAttachedToMailerTests.swift; sourceTree = "<group>"; };
 		188792901AF3682F00DB0B49 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		188792921AF4AEE200DB0B49 /* myphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myphoto.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		1887926E1AF280C000DB0B49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				188792921AF4AEE200DB0B49 /* myphoto.png */,
 				1887926F1AF280C000DB0B49 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -198,6 +201,7 @@
 			files = (
 				188792761AF280C000DB0B49 /* Main.storyboard in Resources */,
 				1887927B1AF280C000DB0B49 /* LaunchScreen.xib in Resources */,
+				188792931AF4AEE200DB0B49 /* myphoto.png in Resources */,
 				188792781AF280C000DB0B49 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

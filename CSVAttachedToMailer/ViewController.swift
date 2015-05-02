@@ -36,14 +36,17 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate{
         var toRecipients = ["to@1gmail.com"]
         var CcRecipients = ["cc@1gmail.com","Cc2@1gmail.com"]
         var BccRecipients = ["Bcc@1gmail.com","Bcc2@1gmail.com"]
+        var image = UIImage(named: "myphoto.png")
+        var imageData = UIImageJPEGRepresentation(image, 1.0)
         
         
         mailViewController.mailComposeDelegate = self
         mailViewController.setSubject("メールの件名")
-        mailViewController.setToRecipients(toRecipients) //宛先メールアドレスの表示
-        mailViewController.setCcRecipients(CcRecipients)
-        mailViewController.setBccRecipients(BccRecipients)
+        mailViewController.setToRecipients(toRecipients) //Toの表示
+        mailViewController.setCcRecipients(CcRecipients) //Ccの表示
+        mailViewController.setBccRecipients(BccRecipients) //Bccの表示
         mailViewController.setMessageBody("メールの本文", isHTML: false)
+        mailViewController.addAttachmentData(imageData, mimeType: "image/png", fileName: "image")
         
         self.presentViewController(mailViewController, animated: true, completion: nil)
     }
