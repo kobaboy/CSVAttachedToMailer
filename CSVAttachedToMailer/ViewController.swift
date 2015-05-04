@@ -12,6 +12,7 @@ import MessageUI
 class ViewController: UIViewController, MFMailComposeViewControllerDelegate{
 
     let startMailerBtn = UIButton(frame: CGRectMake(0,0,200,30))
+    var csvData=[[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,23 +33,39 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate{
             return
         }
         
-        var mailViewController = MFMailComposeViewController()
+        //CSVデータの作成
+        csvData.append(["日付","データ１","データ２","データ３","データ４"])
+        csvData.append(["2015年5月5日","aaa","bbb","ccc","ddd"])
+        
+        sendMailWithCSV("メール件名", message: "メール本文", csv: csvData)
+        
+    }
+    
+    func sendMailWithCSV(subject: String, message: String, csv: [[String]]) {
+        
+        let mailViewController = MFMailComposeViewController()
+        mailViewController.mailComposeDelegate = self
         var toRecipients = ["to@1gmail.com"]
-        var CcRecipients = ["cc@1gmail.com","Cc2@1gmail.com"]
-        var BccRecipients = ["Bcc@1gmail.com","Bcc2@1gmail.com"]
+        var CcRecipients = ["cc@1gmail.com"]
+        var BccRecipients = ["Bcc1@1gamil.com","Bcc2@1gmail.com"]
         var image = UIImage(named: "myphoto.png")
         var imageData = UIImageJPEGRepresentation(image, 1.0)
         
-        
-        mailViewController.mailComposeDelegate = self
-        mailViewController.setSubject("メールの件名")
-        mailViewController.setToRecipients(toRecipients) //Toの表示
-        mailViewController.setCcRecipients(CcRecipients) //Ccの表示
-        mailViewController.setBccRecipients(BccRecipients) //Bccの表示
-        mailViewController.setMessageBody("メールの本文", isHTML: false)
+        mailViewController.setSubject(subject)
+        mailViewController.setToRecipients(toRecipients)
+        mailViewController.setCcRecipients(CcRecipients)
+        mailViewController.setBccRecipients(BccRecipients)
+        mailViewController.setMessageBody(message, isHTML: false)
         mailViewController.addAttachmentData(imageData, mimeType: "image/png", fileName: "image")
-        
-        self.presentViewController(mailViewController, animated: true, completion: nil)
+        mailViewController.addAttachmentData(toCSV(csv).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), mimeType: "text/csv", fileName: "sample.csv")
+        self.presentViewController(mailViewController, animated: true) {}
+    }
+    
+    func toCSV(a: [[String]]) -> String {
+        return join("\n", a.map { join(",", $0.map { e in
+            contains(e) { contains("\n\",", $0) } ?
+                "\"" + e.stringByReplacingOccurrencesOfString("\"", withString: "\"\"", options: nil, range: nil) + "\"" : e
+            })}) + "\n"
     }
     
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
